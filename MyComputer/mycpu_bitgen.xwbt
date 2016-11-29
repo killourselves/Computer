@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\HASEE\Desktop\yanjy\Computer\MyComputer\mycpu.ncd
+OUTFILE=C:\Users\HASEE\Desktop\yanjy\Computer\MyComputer\mycpu.bit
+FAMILY=Spartan3E
+PART=xc3s1200e-4fg320
+WORKINGDIR=C:\Users\HASEE\Desktop\yanjy\Computer\MyComputer
+LICENSE=WebPack
+USER_INFO=211259139_0_0_550

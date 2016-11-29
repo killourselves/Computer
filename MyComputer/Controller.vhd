@@ -39,6 +39,8 @@ entity Controller is
 			ALUOp : out std_logic_vector(3 downto 0);
 			
 			TOp : out std_logic_vector(1 downto 0);
+			rx : out std_logic_vector(3 downto 0);
+			ry : out std_logic_vector(3 downto 0);
 			BJOp : out std_logic_vector(2 downto 0)
 			);
 end Controller;
@@ -180,14 +182,14 @@ begin
 					TOp<="11";
 					controllerOut <= "01000";
 					BJOp<="001";
-					Rd<="1111"
+					Rd<="1111";
 					ALUOp<="0001";
 				when "00101" => --BNEZ
 					imm <= "111";
 					controllerOut <= "01000";
 					BJOp<="010";
 					TOp<="11";
-					R<="1111";
+					Rd<="1111";
 					ALUOp<="0001";
 				when "01101" => --LI
 					imm <= "011";

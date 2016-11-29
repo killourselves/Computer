@@ -23,20 +23,21 @@ entity IO is
 		ram1_en 		: out std_logic;
 		ram1_oe			: out std_logic;
 		ram1_we			: out std_logic;
-		ram1_addr		: out std_logic_vector(15 downto 0);
+		ram1_addr		: out std_logic_vector(17 downto 0);
 		ram1_data		: inout std_logic_vector(15 downto 0);
 
 		ram2_en			: out std_logic;
 		ram2_oe			: out std_logic;
 		ram2_we			: out std_logic;
-		ram2_addr		: out std_logic_vector(15 downto 0);
+		ram2_addr		: out std_logic_vector(17 downto 0);
 		ram2_data		: inout std_logic_vector(15 downto 0)
 		
 	);
 end IO;
 
 architecture Behavioral of IO is
-	signal state : std_logic_vector(2 downto 0) := "00";
+	signal state : std_logic_vector(2 downto 0) := "000";
+	signal flag : std_logic :='0';
 begin 
 	process(clk, rst)
 	begin
@@ -47,11 +48,11 @@ begin
 		elsif clk'event and clk = '1' then
 			ram2_en <= '0';
 			case state is
-				when "000" =>--取指令
+				when "000" =>--取指�
 					ram2_data <= "ZZZZZZZZZZZZZZZZ";
 					ram2_we <= '1';
 					ram2_oe <= '0';
-					ram2_addr <= pcaddr;
+					ram2_addr <= "00"&pcaddr;
 					state <= "001";
 				when "001" =>
 					PC <= ram2_data;
@@ -59,29 +60,61 @@ begin
 					state <= "010";
 				when "010" =>--读写内存
 					if (MemRead = '1') then
-						ram2_data <= "ZZZZZZZZZZZZZZZZ";
-						ram2_we <= '1';
-						ram2_oe <= '0';
-						ram2_addr <= addr;
+						if(addr = x"BF03") then
+							rdn<='1';
+							ram2_data <= "ZZZZZZZZZZZZZZZZ";
+							flag<='0';
+						else 
+							ram2_data <= "ZZZZZZZZZZZZZZZZ";
+							ram2_we <= '1';
+							ram2_oe <= '0';
+							ram2_addr <= "00"&addr;
+							flag<='1';	
+						end if;
 						state <= "011";
 					elsif(MemWrite = '1') then
-						ram2_oe <= '1';
-						ram2_data <= data;
-						ram2_addr <= addr;
-						ram2_we <= '0';
+						if(addr = x"BF02")then
+							ram2_data<= data;
+							wrn<='0';
+							flag<='0';
+						else
+							ram2_oe <= '1';
+							ram2_data <= data;
+							ram2_addr <= "00"&addr;
+							ram2_we <= '0';
+							flag<='1';
+						end if;
 						state <= "100";
 					else
 						state <= "101";
 					end if ;
 				when "011" =>
-					MemData <= ram2_data;
-					ram2_oe <='1';
-					state <= "000";
+					if(flag = '0') then
+						if data_ready ='1' then
+							MemData <= ram2_data;
+							rdn<='0';
+							state <= "000";
+						else
+							state<="011";
+						end if;
+					else
+						MemData <= ram2_data;
+						ram2_oe <='1';
+						state <= "000";
+					end if;
+					
 				when "100" =>
-					ram2_we <= '1';
+					if(flag = '0') then
+						wrn<='1';
+					else 
+						ram2_we <= '1';
+					end if;
 					state <= "000";
 				when "101" =>
+					state <= "000";
+				when others =>
 					state <= "000";
 			end case;
 		end if;
 	end process;
+end Behavioral;

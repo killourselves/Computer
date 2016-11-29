@@ -1,24 +1,7 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date:    20:39:24 11/20/2015 
--- Design Name: 
--- Module Name:    Registers - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
-----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL ;
+use IEEE.STD_LOGIC_UNSIGNED.ALL ;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -37,6 +20,7 @@ entity Registers is
 		ry : in std_logic_vector(3 downto 0);
 		WbRd : in std_logic_vector(3 downto 0);
 		WbData : in std_logic_vector(15 downto 0);
+		PCIn : in std_logic_vector(15 downto 0);
 		RegWrite : in std_logic;
 		
 		
@@ -60,6 +44,7 @@ architecture Behavioral of Registers is
 	signal r7 : std_logic_vector(15 downto 0);
 	signal IH : std_logic_vector(15 downto 0);
 	signal SP : std_logic_vector(15 downto 0);
+	signal PC : std_logic_vector(15 downto 0);
 begin
 	
 	process(clk, rst)
@@ -75,20 +60,26 @@ begin
 			r7 <= (others => '0');
 			IH <= (others => '0');			
 			SP <= (others => '0');
-		elsif (clk'event and clk = '0' and RegWrite = '1') then
-			case WbRd is 
-				when "0000" => r0 <= WbData;
-				when "0001" => r1 <= WbData;
-				when "0010" => r2 <= WbData;
-				when "0011" => r3 <= WbData;
-				when "0100" => r4 <= WbData;
-				when "0101" => r5 <= WbData;
-				when "0110" => r6 <= WbData;
-				when "0111" => r7 <= WbData;
-				when "1000" => SP <= WbData;
-				when "1001" => IH <= WbData;
-				when others =>
-			end case;
+			PC <= (others => '0');
+		elsif (clk'event and clk = '0') then
+			PC <= PCIn - x"0001";
+			if(RegWrite = '1') then
+				case WbRd is 
+					when "0000" => r0 <= WbData;
+					when "0001" => r1 <= WbData;
+					when "0010" => r2 <= WbData;
+					when "0011" => r3 <= WbData;
+					when "0100" => r4 <= WbData;
+					when "0101" => r5 <= WbData;
+					when "0110" => r6 <= WbData;
+					when "0111" => r7 <= WbData;
+					when "1000" => SP <= WbData;
+					when "1001" => IH <= WbData;
+					--Pc "1010"
+					
+					when others =>
+				end case;
+			end if;
 		end if;
 	end process;
 	
@@ -103,7 +94,12 @@ begin
 			when "0101" => dataA <= r5;
 			when "0110" => dataA <= r6;
 			when "0111" => dataA <= r7;
+			when "1000" => dataA <= SP;
+			when "1001" => dataA <= IH;
+			when "1010" => dataA <= PC;
+			when "1011" => dataA <= (others => '0');
 			when others =>
+				dataA <= (others => '1');
 		end case;
 	end process;
 	
@@ -118,7 +114,12 @@ begin
 			when "0101" => dataB <= r5;
 			when "0110" => dataB <= r6;
 			when "0111" => dataB <= r7;
+			when "1000" => dataB <= SP;
+			when "1001" => dataB <= IH;
+			when "1010" => dataB <= PC;
+			when "1011" => dataB <= (others => '0');
 			when others =>
+				dataB <= (others => '1');
 		end case;
 	end process;
 	

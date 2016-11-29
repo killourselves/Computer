@@ -28,13 +28,13 @@ end ConflictController;
 architecture Behavioral of ConflictController is
 
 begin
-	process(ExMemRead，ExRd，RxAddr, RyAddr)
+	process(ExMemRead, ExRd, RxAddr, RyAddr)
 	begin
 		if(ExMemRead = '0') then
 			PCKeep <= '0';
 			IFIDKeep <= '0';
 			Cto0 <= '0';
-		elsif(ExRd = RxAddr or ExRd = RyAddr)
+		elsif(ExRd = RxAddr or ExRd = RyAddr) then
 			PCKeep <= '1';
 			IFIDKeep <= '1';
 			Cto0 <= '1';

@@ -21,11 +21,8 @@ entity IDExRegisters is
 			Ry : in std_logic_vector(15 downto 0);
 			imme : in std_logic_vector(15 downto 0);
 
-			IDAluSrc : in std_logic;
-			IDMemWrite : in std_logic;
-			IDMemRead : in std_logic;
-			IDMemtoReg : in std_logic;
-			IDRegWrite : in std_logic;
+			IDControl : in std_logic_vector(4 downto 0) ;
+			-- RegWrite(0) ALUSrc(1) MemRead(2)MemWrite(3)MemtoReg(4)
 
 			Command : in std_logic_vector(15 downto 0);
 			IDAluOp : in std_logic_vector(3 downto 0);
@@ -39,7 +36,6 @@ entity IDExRegisters is
 			ExRy : out std_logic_vector(15 downto 0);
 			AluOp : out std_logic_vector(3 downto 0);
 
-			DataSrc : out std_logic;
 			AluSrc : out std_logic;
 			EXMemWrite : out std_logic;
 			ExMemRead : out std_logic;
@@ -62,7 +58,6 @@ begin
 			ExRy <= (others => '0');
 			AluOp <= (others => '0');
 
-			DataSrc <= '0';
 			AluSrc <= '0';
 			ExMemRead <= '0';
 			ExMemWrite <= '0';
@@ -77,23 +72,11 @@ begin
 			ExRx <= Rx;
 			ExRy <= Ry;
 			AluOp <= IDAluOp;
-			AluSrc <= IDAluSrc
-			ExMemRead <= IDMemRead;
-			ExMemWrite <= IDMemWrite;
-			ExMemtoReg <= IDMemtoReg;
-			ExRegWrite <= IDRegWrite;
-			if(IDMemWrite = '1') then
-				case Command(15 downto 11) is
-					when "11011" =>--sw
-						DataSrc <= '1';
-					when "11010" =>--sw_sp
-						DataSrc <= '0';
-					when others =>
-						DataSrc <= '0';
-				end case;
-			else
-				DataSrc <= '0';
-			end if;
+			AluSrc <= IDControl(1);
+			ExMemRead <= IDControl(2);
+			ExMemWrite <= IDControl(3);
+			ExMemtoReg <= IDControl(4);
+			ExRegWrite <= IDControl(0);
 		end if;
 	end process;
 			

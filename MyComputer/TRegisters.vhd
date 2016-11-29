@@ -37,7 +37,7 @@ entity TRegisters is
 		TOp : in std_logic_vector(1 downto 0);
 		dataImme : in std_logic_vector(15 downto 0);
 		
-		dataT : out std_logic;
+		dataT : out std_logic
 	);
 end TRegisters;
 
@@ -47,17 +47,17 @@ begin
 	process(rst)
 	begin
 		if(rst = '0') then
-			T<='1';
+			--T<='1';
 		end if;
 	end process;
 	
-	process(dataA,dataB,commendIn)
+	process(dataA,dataB,TOp,dataImme)
 	begin
 		if(dataA = dataB) and (TOp = "00") then
 			T<='0';
 		elsif (dataA < dataB) and (TOp = "01")  then
 			T<='1';
-		elsif (dataA = dataImme) and TOp = "10" then
+		elsif (dataA = dataImme) and (TOp = "10") then
 			T<='0';
 		end if;
 	end process;

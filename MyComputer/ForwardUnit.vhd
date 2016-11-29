@@ -50,20 +50,20 @@ begin
 	process(MemRd, WBRd, MemRegWrite, WBRegWrite, ExRx, ExRy)
 	begin
 		
-		if (MemRegWrite = '1'  and MemRd /= "1111"  and MemRd = ExRx) then--Rx与Mem阶段目的寄存器相同
-			Forward1 <= "10";--取  MemData
-		elsif (WBRegWrite = '1'  and MemRd /= ExRx and WBRd = ExRx ) then--Rx与WB阶段的目的寄存器相同
-			Forward1 <= "01";--取  WBData
-		--可以加特殊寄存器的转发处理
+		if (MemRegWrite = '1'  and MemRd = ExRx) then--Rx与Mem阶段目的寄存器相�
+			Forward1 <= "10";--� MemData
+		elsif (WBRegWrite = '1' and WBRd = ExRx ) then--Rx与WB阶段的目的寄存器相同
+			Forward1 <= "01";--� WBData
+		--可以加特殊寄存器的转发处�
 		else
 			Forward1 <="00";
 		end if;
 		
 		
-		if (MemRegWrite = '1' and MemRd = '0' & ExRy) then--Ry与Mem阶段目的寄存器相同
-			Forward2 <= "10";--取  MemData
-		elsif (WBRegWrite = '1'  and MemRd /= ExRy and WBRd = '0' & IdExRy) then--Ry与WB阶段的目的寄存器相同
-			Forward2 <= "01";--取  WBData
+		if (MemRegWrite = '1' and MemRd = ExRy) then--Ry与Mem阶段目的寄存器相�
+			Forward2 <= "10";--� MemData
+		elsif (WBRegWrite = '1' and WBRd = ExRy) then--Ry与WB阶段的目的寄存器相同
+			Forward2 <= "01";--� WBData
 		else 
 			Forward2 <= "00";
 		end if;

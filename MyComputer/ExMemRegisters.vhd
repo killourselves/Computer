@@ -32,6 +32,7 @@ entity ExMemRegisters is
 			
 			MemWrite : out std_logic;
 			MemRead : out std_logic;
+			MemRegWrite : out std_logic;
 			MemtoReg : out std_logic
 	);
 end ExMemRegisters;
@@ -47,6 +48,7 @@ begin
 			MemWrite <= '0';
 			MemRead <= '0';
 			MemtoReg <= '0';
+			MemRegWrite <= '0';
 			Addr <= (others => '0');
 			Data <= (others => '0');
 		elsif (clk'event and clk = '1') then
@@ -56,6 +58,7 @@ begin
 			MemRead <= ExMemRead;
 			MemWrite <= ExMemWrite;
 			MemtoReg <= ExMemtoReg;
+			MemRegWrite <= ExRegWrite;
 			
 			Addr <= AluRes;
 			Data <= ExData;
