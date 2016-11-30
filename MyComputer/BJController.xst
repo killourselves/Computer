@@ -1,0 +1,5 @@
+set -tmpdir "C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/xst/projnav.tmp"
+set -xsthdpdir "C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/xst"
+elaborate
+-ifn BJController.prj
+-ifmt mixed

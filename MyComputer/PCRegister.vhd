@@ -30,7 +30,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity PCRegister is
-	port(	rst,clk : in std_logic;
+	port(	rst : in std_logic;
 			PCWrite : in std_logic;
 			PCIn : in std_logic_vector(15 downto 0);
 			PCOut : out std_logic_vector(15 downto 0)
@@ -40,15 +40,11 @@ end PCRegister;
 architecture Behavioral of PCRegister is
 
 begin
-	process(clk,rst)
+	process
 	begin
-		if (rst = '0') then 
-			PCOut <= "0000000000000001";
-		elsif clk'event and clk = '1'then
 				if PCWrite = '0' then
 					PCOut <= PCIn;
 				end if;
-		end if;
 	end process;
 end Behavioral;
 

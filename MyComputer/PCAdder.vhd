@@ -41,7 +41,7 @@ begin
 
 	process(PCALUIn)
 	begin
-		PCALUOut <= PCALUIn + 1;
+		PCALUOut <= PCALUIn + x"0001";
 	end process;
 
 end Behavioral;

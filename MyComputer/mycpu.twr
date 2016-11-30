@@ -3,7 +3,7 @@ Release 14.7 Trace  (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 F:\Xlinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4 -n
-3 -fastpaths -xml mycpu.twx mycpu.ncd -o mycpu.twr mycpu.pcf
+3 -fastpaths -xml mycpu.twx mycpu.ncd -o mycpu.twr mycpu.pcf -ucf mycpu.ucf
 
 Design file:              mycpu.ncd
 Physical constraint file: mycpu.pcf
@@ -44,23 +44,23 @@ Setup/Hold to clock clk
             |Max Setup to|Max Hold to |                  | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
-dataReady   |    3.364(R)|    0.468(R)|clk_BUFGP         |   0.000|
-ram2Data<0> |    1.054(R)|    0.631(R)|clk_BUFGP         |   0.000|
-ram2Data<1> |    0.268(R)|    1.063(R)|clk_BUFGP         |   0.000|
-ram2Data<2> |    1.431(R)|    0.374(R)|clk_BUFGP         |   0.000|
-ram2Data<3> |    1.068(R)|    0.465(R)|clk_BUFGP         |   0.000|
-ram2Data<4> |    0.790(R)|    0.877(R)|clk_BUFGP         |   0.000|
-ram2Data<5> |    0.713(R)|    1.117(R)|clk_BUFGP         |   0.000|
-ram2Data<6> |    0.816(R)|    0.751(R)|clk_BUFGP         |   0.000|
-ram2Data<7> |    1.798(R)|    1.073(R)|clk_BUFGP         |   0.000|
-ram2Data<8> |    1.583(R)|    1.053(R)|clk_BUFGP         |   0.000|
-ram2Data<9> |    0.973(R)|    0.883(R)|clk_BUFGP         |   0.000|
-ram2Data<10>|    1.021(R)|    1.318(R)|clk_BUFGP         |   0.000|
-ram2Data<11>|    0.173(R)|    1.162(R)|clk_BUFGP         |   0.000|
-ram2Data<12>|    0.675(R)|    1.369(R)|clk_BUFGP         |   0.000|
-ram2Data<13>|    0.437(R)|    1.187(R)|clk_BUFGP         |   0.000|
-ram2Data<14>|    0.200(R)|    1.320(R)|clk_BUFGP         |   0.000|
-ram2Data<15>|    0.201(R)|    1.204(R)|clk_BUFGP         |   0.000|
+dataReady   |    6.574(R)|   -2.502(R)|clk_BUFGP         |   0.000|
+ram2Data<0> |    1.411(R)|    0.582(R)|clk_BUFGP         |   0.000|
+ram2Data<1> |    2.114(R)|    0.314(R)|clk_BUFGP         |   0.000|
+ram2Data<2> |    2.017(R)|    0.744(R)|clk_BUFGP         |   0.000|
+ram2Data<3> |    1.984(R)|    0.268(R)|clk_BUFGP         |   0.000|
+ram2Data<4> |    1.114(R)|    0.354(R)|clk_BUFGP         |   0.000|
+ram2Data<5> |    1.397(R)|    0.527(R)|clk_BUFGP         |   0.000|
+ram2Data<6> |    1.970(R)|    0.220(R)|clk_BUFGP         |   0.000|
+ram2Data<7> |    1.572(R)|    0.634(R)|clk_BUFGP         |   0.000|
+ram2Data<8> |    1.948(R)|    0.805(R)|clk_BUFGP         |   0.000|
+ram2Data<9> |    1.982(R)|    0.821(R)|clk_BUFGP         |   0.000|
+ram2Data<10>|    2.223(R)|    0.795(R)|clk_BUFGP         |   0.000|
+ram2Data<11>|    1.617(R)|    0.375(R)|clk_BUFGP         |   0.000|
+ram2Data<12>|    1.743(R)|    0.518(R)|clk_BUFGP         |   0.000|
+ram2Data<13>|    2.257(R)|    0.559(R)|clk_BUFGP         |   0.000|
+ram2Data<14>|    1.409(R)|    0.334(R)|clk_BUFGP         |   0.000|
+ram2Data<15>|    2.310(R)|    0.263(R)|clk_BUFGP         |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock clk to Pad
@@ -68,43 +68,59 @@ Clock clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-ram2Addr<0> |    7.948(R)|clk_BUFGP         |   0.000|
-ram2Addr<1> |    8.559(R)|clk_BUFGP         |   0.000|
-ram2Addr<2> |    8.275(R)|clk_BUFGP         |   0.000|
-ram2Addr<3> |    7.667(R)|clk_BUFGP         |   0.000|
-ram2Addr<4> |    8.001(R)|clk_BUFGP         |   0.000|
-ram2Addr<5> |    8.842(R)|clk_BUFGP         |   0.000|
-ram2Addr<6> |    7.954(R)|clk_BUFGP         |   0.000|
-ram2Addr<7> |    8.671(R)|clk_BUFGP         |   0.000|
-ram2Addr<8> |    7.994(R)|clk_BUFGP         |   0.000|
-ram2Addr<9> |    7.455(R)|clk_BUFGP         |   0.000|
-ram2Addr<10>|    8.805(R)|clk_BUFGP         |   0.000|
-ram2Addr<11>|    8.420(R)|clk_BUFGP         |   0.000|
-ram2Addr<12>|    8.076(R)|clk_BUFGP         |   0.000|
-ram2Addr<13>|    8.402(R)|clk_BUFGP         |   0.000|
-ram2Addr<14>|    8.434(R)|clk_BUFGP         |   0.000|
-ram2Addr<15>|    7.677(R)|clk_BUFGP         |   0.000|
-ram2Data<0> |    8.303(R)|clk_BUFGP         |   0.000|
-ram2Data<1> |    8.944(R)|clk_BUFGP         |   0.000|
-ram2Data<2> |    9.200(R)|clk_BUFGP         |   0.000|
-ram2Data<3> |    8.292(R)|clk_BUFGP         |   0.000|
-ram2Data<4> |    8.056(R)|clk_BUFGP         |   0.000|
-ram2Data<5> |    9.446(R)|clk_BUFGP         |   0.000|
-ram2Data<6> |    8.287(R)|clk_BUFGP         |   0.000|
-ram2Data<7> |    7.933(R)|clk_BUFGP         |   0.000|
-ram2Data<8> |    8.190(R)|clk_BUFGP         |   0.000|
-ram2Data<9> |    7.946(R)|clk_BUFGP         |   0.000|
-ram2Data<10>|    7.663(R)|clk_BUFGP         |   0.000|
-ram2Data<11>|    7.821(R)|clk_BUFGP         |   0.000|
-ram2Data<12>|    8.200(R)|clk_BUFGP         |   0.000|
-ram2Data<13>|    7.938(R)|clk_BUFGP         |   0.000|
-ram2Data<14>|    8.451(R)|clk_BUFGP         |   0.000|
-ram2Data<15>|    8.480(R)|clk_BUFGP         |   0.000|
-ram2En      |    6.244(R)|clk_BUFGP         |   0.000|
-ram2Oe      |    7.871(R)|clk_BUFGP         |   0.000|
-ram2We      |    9.233(R)|clk_BUFGP         |   0.000|
-rdn         |    8.444(R)|clk_BUFGP         |   0.000|
-wrn         |    8.012(R)|clk_BUFGP         |   0.000|
+led<0>      |   10.025(R)|clk_BUFGP         |   0.000|
+led<1>      |   12.242(R)|clk_BUFGP         |   0.000|
+led<2>      |   12.155(R)|clk_BUFGP         |   0.000|
+led<3>      |   10.355(R)|clk_BUFGP         |   0.000|
+led<4>      |   10.359(R)|clk_BUFGP         |   0.000|
+led<5>      |    9.910(R)|clk_BUFGP         |   0.000|
+led<6>      |    9.582(R)|clk_BUFGP         |   0.000|
+led<7>      |   11.909(R)|clk_BUFGP         |   0.000|
+led<8>      |    8.940(R)|clk_BUFGP         |   0.000|
+led<9>      |    9.478(R)|clk_BUFGP         |   0.000|
+led<10>     |   11.111(R)|clk_BUFGP         |   0.000|
+led<11>     |    9.362(R)|clk_BUFGP         |   0.000|
+led<12>     |    9.839(R)|clk_BUFGP         |   0.000|
+led<13>     |    9.776(R)|clk_BUFGP         |   0.000|
+led<14>     |   10.141(R)|clk_BUFGP         |   0.000|
+led<15>     |    9.537(R)|clk_BUFGP         |   0.000|
+ram2Addr<0> |    9.339(R)|clk_BUFGP         |   0.000|
+ram2Addr<1> |    9.233(R)|clk_BUFGP         |   0.000|
+ram2Addr<2> |    9.011(R)|clk_BUFGP         |   0.000|
+ram2Addr<3> |    8.360(R)|clk_BUFGP         |   0.000|
+ram2Addr<4> |    8.866(R)|clk_BUFGP         |   0.000|
+ram2Addr<5> |    8.944(R)|clk_BUFGP         |   0.000|
+ram2Addr<6> |    8.824(R)|clk_BUFGP         |   0.000|
+ram2Addr<7> |    8.841(R)|clk_BUFGP         |   0.000|
+ram2Addr<8> |    9.146(R)|clk_BUFGP         |   0.000|
+ram2Addr<9> |    8.838(R)|clk_BUFGP         |   0.000|
+ram2Addr<10>|    9.069(R)|clk_BUFGP         |   0.000|
+ram2Addr<11>|    8.847(R)|clk_BUFGP         |   0.000|
+ram2Addr<12>|    9.030(R)|clk_BUFGP         |   0.000|
+ram2Addr<13>|    8.230(R)|clk_BUFGP         |   0.000|
+ram2Addr<14>|    8.428(R)|clk_BUFGP         |   0.000|
+ram2Addr<15>|    8.883(R)|clk_BUFGP         |   0.000|
+ram2Data<0> |    8.705(R)|clk_BUFGP         |   0.000|
+ram2Data<1> |    9.989(R)|clk_BUFGP         |   0.000|
+ram2Data<2> |    9.690(R)|clk_BUFGP         |   0.000|
+ram2Data<3> |    9.727(R)|clk_BUFGP         |   0.000|
+ram2Data<4> |    8.561(R)|clk_BUFGP         |   0.000|
+ram2Data<5> |    9.388(R)|clk_BUFGP         |   0.000|
+ram2Data<6> |    9.139(R)|clk_BUFGP         |   0.000|
+ram2Data<7> |    9.115(R)|clk_BUFGP         |   0.000|
+ram2Data<8> |    9.136(R)|clk_BUFGP         |   0.000|
+ram2Data<9> |    9.802(R)|clk_BUFGP         |   0.000|
+ram2Data<10>|    8.813(R)|clk_BUFGP         |   0.000|
+ram2Data<11>|    9.395(R)|clk_BUFGP         |   0.000|
+ram2Data<12>|    9.142(R)|clk_BUFGP         |   0.000|
+ram2Data<13>|   10.225(R)|clk_BUFGP         |   0.000|
+ram2Data<14>|    8.505(R)|clk_BUFGP         |   0.000|
+ram2Data<15>|    9.406(R)|clk_BUFGP         |   0.000|
+ram2En      |    6.265(R)|clk_BUFGP         |   0.000|
+ram2Oe      |    9.849(R)|clk_BUFGP         |   0.000|
+ram2We      |    9.455(R)|clk_BUFGP         |   0.000|
+rdn         |   11.544(R)|clk_BUFGP         |   0.000|
+wrn         |   10.181(R)|clk_BUFGP         |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock clk
@@ -112,8 +128,8 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    4.222|         |         |         |
-rst            |    5.067|    5.067|         |         |
+clk            |    4.063|         |         |         |
+rst            |    5.101|    5.101|         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock rst
@@ -121,18 +137,18 @@ Clock to Setup on destination clock rst
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-rst            |         |         |    2.470|    2.470|
+rst            |         |         |    3.369|    3.369|
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Wed Nov 30 02:18:59 2016 
+Analysis completed Wed Nov 30 19:50:41 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 202 MB
+Peak Memory Usage: 219 MB
 
 
 

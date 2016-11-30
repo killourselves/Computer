@@ -30,10 +30,6 @@ begin
 			PCNext <= PCImme;
 		else PCNext <= PCRx;
 		end if;
-		--if (branch = '1') then 
-		--	PCNext <= PCJump;
-		--else PcNext <= PcAdd;
-		--end if;
 	end process;
 
 end Behavioral;

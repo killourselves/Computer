@@ -1,0 +1,42 @@
+Release 14.7 - ngc2edif P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design mycpu.ngc ...
+WARNING:NetListWriters:298 - No output is written to mycpu.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus idcontrol<4 : 0> on block mycpu is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus secondop<15 : 0> on block mycpu is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u14/Eximme<15 : 0> on block mycpu is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u6/controllerOut<4 : 0> on block mycpu
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u6/controllerOut_mux0005<4 : 0> on block
+   mycpu is not reconstructed, because there are some missing bus signals.
+  finished :Prep
+Writing EDIF netlist file mycpu.edif ...
+ngc2edif: Total memory usage is 91648 kilobytes
+
+Release 14.7 - ngc2edif P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design mycpu.ngc ...
+WARNING:NetListWriters:298 - No output is written to mycpu.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus idcontrol<4 : 0> on block mycpu is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus secondop<15 : 0> on block mycpu is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u14/Eximme<15 : 0> on block mycpu is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u6/controllerOut<4 : 0> on block mycpu
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus u6/controllerOut_mux0005<4 : 0> on block
+   mycpu is not reconstructed, because there are some missing bus signals.
+  finished :Prep
+Writing EDIF netlist file mycpu.edif ...
+ngc2edif: Total memory usage is 91160 kilobytes
+

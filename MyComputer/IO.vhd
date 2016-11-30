@@ -46,6 +46,8 @@ begin
 			ram2_en <= '1';
 			ram1_en <= '1';
 		elsif clk'event and clk = '1' then
+			
+			
 			ram2_en <= '0';
 			case state is
 				when "000" =>--取指�

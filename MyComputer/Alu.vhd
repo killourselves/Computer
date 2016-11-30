@@ -43,6 +43,18 @@ begin
 			when "1001" => 
 				tempB := Op2(3 downto 0) ;
 				tempresult := to_stdlogicvector(to_bitvector(Op1) ROL conv_integer(Op2)) ;
+			when "1010" =>
+				if(Op1 = Op2) then
+					tempresult := "0000000000000000" ;
+				else
+					tempresult := "0000000000000001";
+				end if;
+			when "1011" =>
+				if(Op1 < Op2) then
+					tempresult := "0000000000000001" ;
+				else
+					tempresult := "0000000000000000";
+				end if;
 			when others => tempresult := "0000000000000000" ;
 		end case ;
 		result <= tempresult ;

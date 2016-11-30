@@ -1,166 +1,166 @@
-V3 94
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Alu.vhd 2016/11/29.01:19:50 P.20131013
-EN work/Alu 1480443261 \
+V3 93
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Alu.vhd 2016/11/30.15:10:04 P.20131013
+EN work/Alu 1480506616 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Alu.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
       PB ieee/STD_LOGIC_UNSIGNED 1381692179
-AR work/Alu/Behavioral 1480443262 \
-      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Alu.vhd EN work/Alu 1480443261
+AR work/Alu/Behavioral 1480506617 \
+      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Alu.vhd EN work/Alu 1480506616
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/BJControler.vhd 2016/11/30.01:47:02 P.20131013
 AR work/BJControler/Behavioral 1480441401 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/BJControler.vhd \
       EN work/BJControler 1480441400
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/BJController.vhd 2016/11/30.01:47:02 P.20131013
-EN work/BJController 1480443247 \
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/BJController.vhd 2016/11/30.15:13:01 P.20131013
+EN work/BJController 1480506602 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/BJController.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/BJController/Behavioral 1480443248 \
+AR work/BJController/Behavioral 1480506603 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/BJController.vhd \
-      EN work/BJController 1480443247
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/clock.vhd 2016/11/29.16:30:21 P.20131013
-EN work/clock 1480443227 \
+      EN work/BJController 1480506602
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/clock.vhd 2016/11/30.18:06:36 P.20131013
+EN work/clock 1480506584 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/clock.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/clock/Behavioral 1480443228 \
-      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/clock.vhd EN work/clock 1480443227
+AR work/clock/Behavioral 1480506585 \
+      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/clock.vhd EN work/clock 1480506584
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ConflictController.vhd 2016/11/30.01:17:26 P.20131013
-EN work/ConflictController 1480443249 \
+EN work/ConflictController 1480506604 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ConflictController.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/ConflictController/Behavioral 1480443250 \
+AR work/ConflictController/Behavioral 1480506605 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ConflictController.vhd \
-      EN work/ConflictController 1480443249
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Controller.vhd 2016/11/30.01:23:39 P.20131013
-EN work/Controller 1480443237 \
+      EN work/ConflictController 1480506604
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Controller.vhd 2016/11/30.15:46:38 P.20131013
+EN work/Controller 1480506594 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Controller.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/Controller/Behavioral 1480443238 \
+AR work/Controller/Behavioral 1480506595 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Controller.vhd \
-      EN work/Controller 1480443237
+      EN work/Controller 1480506594
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ControllerMux.vhd 2016/11/30.01:15:30 P.20131013
-EN work/ControllerMux 1480443251 \
+EN work/ControllerMux 1480506606 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ControllerMux.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/ControllerMux/Behavioral 1480443252 \
+AR work/ControllerMux/Behavioral 1480506607 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ControllerMux.vhd \
-      EN work/ControllerMux 1480443251
+      EN work/ControllerMux 1480506606
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ExMemRegisters.vhd 2016/11/30.00:49:37 P.20131013
-EN work/ExMemRegisters 1480443263 \
+EN work/ExMemRegisters 1480506618 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ExMemRegisters.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/ExMemRegisters/Behavioral 1480443264 \
+AR work/ExMemRegisters/Behavioral 1480506619 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ExMemRegisters.vhd \
-      EN work/ExMemRegisters 1480443263
+      EN work/ExMemRegisters 1480506618
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/FirstOpMux.vhd 2016/11/29.01:19:50 P.20131013
-EN work/FirstOpMux 1480443255 \
+EN work/FirstOpMux 1480506610 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/FirstOpMux.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/FirstOpMux/Behavioral 1480443256 \
+AR work/FirstOpMux/Behavioral 1480506611 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/FirstOpMux.vhd \
-      EN work/FirstOpMux 1480443255
+      EN work/FirstOpMux 1480506610
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ForwardUnit.vhd 2016/11/30.01:37:05 P.20131013
-EN work/ForwardUnit 1480443269 \
+EN work/ForwardUnit 1480506624 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ForwardUnit.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/ForwardUnit/Behavioral 1480443270 \
+AR work/ForwardUnit/Behavioral 1480506625 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ForwardUnit.vhd \
-      EN work/ForwardUnit 1480443269
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IDExRegisters.vhd 2016/11/30.01:18:45 P.20131013
-EN work/IDExRegisters 1480443253 \
+      EN work/ForwardUnit 1480506624
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IDExRegisters.vhd 2016/11/30.15:44:03 P.20131013
+EN work/IDExRegisters 1480506608 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IDExRegisters.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/IDExRegisters/Behavioral 1480443254 \
+AR work/IDExRegisters/Behavioral 1480506609 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IDExRegisters.vhd \
-      EN work/IDExRegisters 1480443253
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IfIdRegisters.vhd 2016/11/30.01:23:11 P.20131013
-EN work/IfIdRegisters 1480443235 \
+      EN work/IDExRegisters 1480506608
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IfIdRegisters.vhd 2016/11/30.18:31:01 P.20131013
+EN work/IfIdRegisters 1480506592 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IfIdRegisters.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/IfIdRegisters/Behavioral 1480443236 \
+AR work/IfIdRegisters/Behavioral 1480506593 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IfIdRegisters.vhd \
-      EN work/IfIdRegisters 1480443235
+      EN work/IfIdRegisters 1480506592
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ImmExtend.vhd 2016/11/29.01:19:50 P.20131013
-EN work/ImmExtend 1480443239 \
+EN work/ImmExtend 1480506596 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ImmExtend.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/ImmExtend/Behavioral 1480443240 \
+AR work/ImmExtend/Behavioral 1480506597 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/ImmExtend.vhd \
-      EN work/ImmExtend 1480443239
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IO.vhd 2016/11/30.01:56:49 P.20131013
-EN work/IO 1480443265 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IO.vhd \
+      EN work/ImmExtend 1480506596
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IO.vhd 2016/11/30.19:48:34 P.20131013
+EN work/IO 1480506620 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IO.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179
-AR work/IO/Behavioral 1480443266 \
-      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IO.vhd EN work/IO 1480443265
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/mycpu.vhd 2016/11/30.02:11:30 P.20131013
-EN work/mycpu 1480443271 \
+AR work/IO/Behavioral 1480506621 \
+      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/IO.vhd EN work/IO 1480506620
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/mycpu.vhd 2016/11/30.19:49:40 P.20131013
+EN work/mycpu 1480506626 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/mycpu.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
       PB ieee/STD_LOGIC_UNSIGNED 1381692179
-AR work/mycpu/Behavioral 1480443272 \
-      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/mycpu.vhd EN work/mycpu 1480443271 \
+AR work/mycpu/Behavioral 1480506627 \
+      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/mycpu.vhd EN work/mycpu 1480506626 \
       CP clock CP PCMux CP PCRegister CP PCAdder CP IfIdRegisters CP Controller \
-      CP ImmExtend CP PCAddim CP Registers CP TRegisters CP BJController \
-      CP ConflictController CP ControllerMux CP IDExRegisters CP FirstOpMux CP RyMux \
-      CP SecondOpMux CP Alu CP ExMemRegisters CP IO CP MemWbRegisters CP ForwardUnit
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCAdder.vhd 2016/11/27.19:05:05 P.20131013
-EN work/PCAdder 1480443233 \
+      CP ImmExtend CP PCAddim CP Registers CP BJController CP ConflictController \
+      CP ControllerMux CP IDExRegisters CP FirstOpMux CP RyMux CP SecondOpMux CP Alu \
+      CP ExMemRegisters CP IO CP MemWbRegisters CP ForwardUnit
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCAdder.vhd 2016/11/30.17:57:08 P.20131013
+EN work/PCAdder 1480506590 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCAdder.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179
-AR work/PCAdder/Behavioral 1480443234 \
+AR work/PCAdder/Behavioral 1480506591 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCAdder.vhd \
-      EN work/PCAdder 1480443233
+      EN work/PCAdder 1480506590
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCAddim.vhd 2016/11/30.01:25:31 P.20131013
-EN work/PCAddim 1480443241 \
+EN work/PCAddim 1480506598 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCAddim.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
       PB ieee/STD_LOGIC_UNSIGNED 1381692179
-AR work/PCAddim/Behavioral 1480443242 \
+AR work/PCAddim/Behavioral 1480506599 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCAddim.vhd \
-      EN work/PCAddim 1480443241
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCMux.vhd 2016/11/29.16:47:29 P.20131013
-EN work/PCMux 1480443229 \
+      EN work/PCAddim 1480506598
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCMux.vhd 2016/11/30.18:28:17 P.20131013
+EN work/PCMux 1480506586 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCMux.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/PCMux/Behavioral 1480443230 \
-      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCMux.vhd EN work/PCMux 1480443229
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCRegister.vhd 2016/11/29.16:44:34 P.20131013
-EN work/PCRegister 1480443231 \
+AR work/PCMux/Behavioral 1480506587 \
+      FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCMux.vhd EN work/PCMux 1480506586
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCRegister.vhd 2016/11/30.18:29:18 P.20131013
+EN work/PCRegister 1480506588 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCRegister.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/PCRegister/Behavioral 1480443232 \
+AR work/PCRegister/Behavioral 1480506589 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/PCRegister.vhd \
-      EN work/PCRegister 1480443231
-FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Registers.vhd 2016/11/30.01:25:59 P.20131013
-EN work/Registers 1480443243 \
+      EN work/PCRegister 1480506588
+FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Registers.vhd 2016/11/30.16:26:55 P.20131013
+EN work/Registers 1480506600 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Registers.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
       PB ieee/STD_LOGIC_UNSIGNED 1381692179
-AR work/Registers/Behavioral 1480443244 \
+AR work/Registers/Behavioral 1480506601 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/Registers.vhd \
-      EN work/Registers 1480443243
+      EN work/Registers 1480506600
 FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/TRegisters.vhd 2016/11/30.02:13:43 P.20131013
-EN work/TRegisters 1480443245 \
+EN work/TRegisters 1480444963 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/TRegisters.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/TRegisters/Behavioral 1480443246 \
+AR work/TRegisters/Behavioral 1480444964 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer/MyComputer/TRegisters.vhd \
-      EN work/TRegisters 1480443245
+      EN work/TRegisters 1480444963
 FL C:/Users/HASEE/Desktop/yanjy/Computer1/MemWbRegisters.vhd 2016/11/28.12:17:21 P.20131013
-EN work/MemWbRegisters 1480443267 \
+EN work/MemWbRegisters 1480506622 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer1/MemWbRegisters.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/MemWbRegisters/Behavioral 1480443268 \
+AR work/MemWbRegisters/Behavioral 1480506623 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer1/MemWbRegisters.vhd \
-      EN work/MemWbRegisters 1480443267
+      EN work/MemWbRegisters 1480506622
 FL C:/Users/HASEE/Desktop/yanjy/Computer1/RyMux.vhd 2016/11/28.13:59:49 P.20131013
-EN work/RyMux 1480443257 FL C:/Users/HASEE/Desktop/yanjy/Computer1/RyMux.vhd \
+EN work/RyMux 1480506612 FL C:/Users/HASEE/Desktop/yanjy/Computer1/RyMux.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/RyMux/Behavioral 1480443258 \
-      FL C:/Users/HASEE/Desktop/yanjy/Computer1/RyMux.vhd EN work/RyMux 1480443257
+AR work/RyMux/Behavioral 1480506613 \
+      FL C:/Users/HASEE/Desktop/yanjy/Computer1/RyMux.vhd EN work/RyMux 1480506612
 FL C:/Users/HASEE/Desktop/yanjy/Computer1/SecondOpMux.vhd 2016/11/30.01:28:50 P.20131013
-EN work/SecondOpMux 1480443259 \
+EN work/SecondOpMux 1480506614 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer1/SecondOpMux.vhd \
       PB ieee/std_logic_1164 1381692176
-AR work/SecondOpMux/Behavioral 1480443260 \
+AR work/SecondOpMux/Behavioral 1480506615 \
       FL C:/Users/HASEE/Desktop/yanjy/Computer1/SecondOpMux.vhd \
-      EN work/SecondOpMux 1480443259
+      EN work/SecondOpMux 1480506614

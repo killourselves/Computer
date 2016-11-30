@@ -183,8 +183,11 @@ architecture Behavioral of mycpu is
 			Rx : in std_logic_vector(15 downto 0);
 			Ry : in std_logic_vector(15 downto 0);
 			imme : in std_logic_vector(15 downto 0);
+			IDPCAddimme : in std_logic_vector(15 downto 0);
 
+			IDExFlush : in std_logic;
 			IDControl : in std_logic_vector(4 downto 0) ;
+			IDBJOp : in std_logic_vector(2 downto 0);
 
 			Command : in std_logic_vector(15 downto 0);
 			IDAluOp : in std_logic_vector(3 downto 0);
@@ -197,6 +200,8 @@ architecture Behavioral of mycpu is
 			ExRx : out std_logic_vector(15 downto 0);
 			ExRy : out std_logic_vector(15 downto 0);
 			AluOp : out std_logic_vector(3 downto 0);
+			ExBJOp : out std_logic_vector(2 downto 0);
+			ExPCAddimme : out std_logic_vector(15 downto 0);
 
 			AluSrc : out std_logic;
 			EXMemWrite : out std_logic;
@@ -226,10 +231,10 @@ architecture Behavioral of mycpu is
 	component BJController
 		port(
 			Rx : in std_logic_vector(15 downto 0);
-			T : in std_logic;
 			BJOp : in std_logic_vector(2 downto 0);
 			
 			IFIDFlush : out std_logic;
+			IDEXFlush : out std_logic;
 			PCSrc : out std_logic_vector(1 downto 0)
 		);
 	end component;
@@ -298,22 +303,21 @@ architecture Behavioral of mycpu is
 			ALUOp : out std_logic_vector(3 downto 0);
 			rx : out std_logic_vector(3 downto 0);
 			ry : out std_logic_vector(3 downto 0);
-			TOp : out std_logic_vector(1 downto 0);
 			BJOp : out std_logic_vector(2 downto 0)
 			);
 	end component;
 
-	component TRegisters
-		port(
-			rst : in std_logic;
-			dataA : in std_logic_vector(15 downto 0);
-			dataB : in std_logic_vector(15 downto 0);
-			TOp : in std_logic_vector(1 downto 0);
-			dataImme : in std_logic_vector(15 downto 0);
+	--component TRegisters
+	--	port(
+	--		rst : in std_logic;
+	--		dataA : in std_logic_vector(15 downto 0);
+	--		dataB : in std_logic_vector(15 downto 0);
+	--		TOp : in std_logic_vector(1 downto 0);
+	--		dataImme : in std_logic_vector(15 downto 0);
 			
-			dataT : out std_logic
-		);
-	end component;
+	--		dataT : out std_logic
+	--	);
+	--end component;
 
 	component ControllerMux
 		port(
@@ -377,15 +381,15 @@ architecture Behavioral of mycpu is
 	end component;
 
 	component PCRegister
-		port(	rst,clk : in std_logic;
+		port(	rst : in std_logic;
 				PCWrite : in std_logic;
 				PCIn : in std_logic_vector(15 downto 0);
 				PCOut : out std_logic_vector(15 downto 0)
 			);
 	end component;
 
-	signal pcaddimme : std_logic_vector(15 downto 0);--come from pcaddim(pc mux in)
-	signal pcrx      : std_logic_vector(15 downto 0);--rx(pc mux in)
+	signal idpcaddimme : std_logic_vector(15 downto 0);--come from pcaddim
+	signal expcaddimme : std_logic_vector(15 downto 0);--pc mux in
 	signal pcsrc     : std_logic_vector(1 downto 0);--come from BJController
 	signal pcmuxout     : std_logic_vector(15 downto 0);
 	signal clk2		 : std_logic;
@@ -407,7 +411,6 @@ architecture Behavioral of mycpu is
 	signal idcontrol : std_logic_vector(4 downto 0);--controllermux out
 	signal idrd : std_logic_vector(3 downto 0);
 	signal idaluop : std_logic_vector(3 downto 0);
-	signal idtop : std_logic_vector(1 downto 0);
 	signal idrxaddr : std_logic_vector(3 downto 0);--Registers in
 	signal idryaddr : std_logic_vector(3 downto 0);--Registers in
 	signal idbjop : std_logic_vector(2 downto 0);
@@ -415,6 +418,7 @@ architecture Behavioral of mycpu is
 	signal idry : std_logic_vector(15 downto 0);--come from registers
 	signal idt : std_logic;--come from TRegisters
 	signal idcto0 : std_logic;--ConflictController out
+	signal idexflush : std_logic;
 
 	--ex
 	signal exrd : std_logic_vector(3 downto 0);	
@@ -436,6 +440,7 @@ architecture Behavioral of mycpu is
 	signal secondop : std_logic_vector(15 downto 0);
 	signal newexry : std_logic_vector(15 downto 0);
 	signal exalures : std_logic_vector(15 downto 0);
+	signal exbjop : std_logic_vector(2 downto 0);
 
 	--mem
 	signal memalures : std_logic_vector(15 downto 0);
@@ -472,9 +477,9 @@ u1 : clock
 u2 : PCMux                             
 	port map(	
 		PCSrc => pcsrc,
-		PCImme => pcaddimme,
+		PCImme => expcaddimme,
 		PCFour => idpc,
-		PCRx => pcrx,
+		PCRx => firstop,
 		--out
 		PCNext => pcmuxout --pc register in
 	);
@@ -482,7 +487,6 @@ u2 : PCMux
 u3 : PCRegister
 	port map(
 		rst => rst,
-		clk => clk2,
 		PCWrite => pcwrite,
 		PCIn => pcmuxout,
 		--out
@@ -499,7 +503,7 @@ u4 : PCAdder
 u5 : IfIdRegisters
 	port map(
 		rst => rst,
-		clk => clk2,
+		clk => clk4,
 		commandIn => ifcommand,
 
 		PCFour => pcadderout,
@@ -521,8 +525,7 @@ u6 : Controller
 		-- RegWrite(1) ALUSrc(1) MemRead(1)MemWrite(1)MemtoReg(1)
 		Rd => idrd,
 		ALUOp => idaluop,
-			
-		TOp => idtop,
+
 		rx => idrxaddr,
 		ry => idryaddr,
 		BJOp => idbjop
@@ -541,7 +544,7 @@ u8 : PCAddim
 		NextPC => idpc,
 		imme => idimme16,
 		--out
-		PCim => pcaddimme
+		PCim => idpcaddimme
 	);
 
 u9 : Registers
@@ -570,25 +573,27 @@ u9 : Registers
 		dataIH => open
 	);
 
-u10 : TRegisters
-	port map(
-		rst => rst,
-		dataA => idrx,
-		dataB => idry,
-		TOp => idtop,
-		dataImme => idimme16,
-		--out
-		dataT => idt
-	);
+--u10 : TRegisters
+--	port map(
+--		rst => rst,
+--		dataA => idrx,
+--		dataB => idry,
+--		TOp => idtop,
+--		dataImme => idimme16,
+--		--out
+--		dataT => idt
+--	);
 
 u11 : BJController
 	port map(
-		Rx => idrx,
-		T => idt,
-		BJOp => idbjop,
+		Rx => firstop,
+		--T => idt,
+		BJOp => exbjop,
 		--out
 		IFIDFlush => ifidflush,
+		IDEXFlush => idexflush,
 		PCSrc => pcsrc
+		
 	);
 
 u12 : ConflictController
@@ -621,10 +626,14 @@ u14 : IDExRegisters
 		Rx => idrx,
 		Ry => idry,
 		imme => idimme16,
+		IDPCAddimme => idpcaddimme,
+
+		IDExFlush => idexflush,
 		IDControl => idcontrol,
 		-- RegWrite(0) ALUSrc(1) MemRead(2)MemWrite(3)MemtoReg(4)
 		Command => idcommand,
 		IDAluOp => idaluop,
+		IDBJOp => idbjop,
 		IDRd => idrd,
 		--out
 		ExRd => exrd,
@@ -634,6 +643,8 @@ u14 : IDExRegisters
 		ExRx =>exrx,
 		ExRy =>exry,
 		AluOp =>exaluop,
+		ExBJOp => exbjop,
+		ExPCAddimme => expcaddimme,
 
 		AluSrc =>exalusrc,
 		EXMemWrite =>exmemwrite,
@@ -770,5 +781,59 @@ u22 : ForwardUnit
 		Forward1 => forward1,
 		Forward2 => forward2
 	);
+	
+	
+	
+	--led <=wbdata;
+	led <= ifcommand;
+	--jing <= PCOut;
+	process(pcadderout)
+		begin
+		case pcadderout(7 downto 4) is
+			when "0000" => digit1 <= "0111111";--0
+			when "0001" => digit1 <= "0000110";--1
+			when "0010" => digit1 <= "1011011";--2
+			when "0011" => digit1 <= "1001111";--3
+			when "0100" => digit1 <= "1100110";--4
+			when "0101" => digit1 <= "1101101";--5
+			when "0110" => digit1 <= "1111101";--6
+			when "0111" => digit1 <= "0000111";--7
+			when "1000" => digit1 <= "1111111";--8
+			when "1001" => digit1 <= "1101111";--9
+			when "1010" => digit1 <= "1110111";--A
+			when "1011" => digit1 <= "1111100";--B
+			when "1100" => digit1 <= "0111001";--C
+			when "1101" => digit1 <= "1011110";--D
+			when "1110" => digit1 <= "1111001";--E
+			when "1111" => digit1 <= "1110001";--F
+			when others => digit1 <= "0000000";
+		end case;
+		
+		case pcadderout(3 downto 0) is
+			when "0000" => digit2 <= "0111111";--0
+			when "0001" => digit2 <= "0000110";--1
+			when "0010" => digit2 <= "1011011";--2
+			when "0011" => digit2 <= "1001111";--3
+			when "0100" => digit2 <= "1100110";--4
+			when "0101" => digit2 <= "1101101";--5
+			when "0110" => digit2 <= "1111101";--6
+			when "0111" => digit2 <= "0000111";--7
+			when "1000" => digit2 <= "1111111";--8
+			when "1001" => digit2 <= "1101111";--9
+			when "1010" => digit2 <= "1110111";--A
+			when "1011" => digit2 <= "1111100";--B
+			when "1100" => digit2 <= "0111001";--C
+			when "1101" => digit2 <= "1011110";--D
+			when "1110" => digit2 <= "1111001";--E
+			when "1111" => digit2 <= "1110001";--F
+			when others => digit2 <= "0000000";
+		end case;
+	end process;
+	--ram1Addr <= (others => '0');
+	hs<='0';
+	vs<='0';
+	redOut<="000";
+	greenOut<="000";
+	blueOut<="000";
 end Behavioral;
 

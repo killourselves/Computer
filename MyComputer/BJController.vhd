@@ -13,10 +13,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity BJController is
 	port(
 			Rx : in std_logic_vector(15 downto 0);
-			T : in std_logic;
 			BJOp : in std_logic_vector(2 downto 0);
 			
 			IFIDFlush : out std_logic;
+			IDEXFlush : out std_logic;
 			PCSrc : out std_logic_vector(1 downto 0)
 	);
 end BJController;
@@ -24,41 +24,50 @@ end BJController;
 architecture Behavioral of BJController is
 
 begin
-	process(Rx, T, BJOp) 
+	process(Rx, BJOp) 
 	begin
 		case BJOp is
 			when "000" =>--PC â†PC + Si(imm)
 				IFIDFlush <= '1';
+				IDEXFlush <= '1';
 				PCSrc <= "01";
 			when "001" =>--"if (R[x] == 0)PC â†PC + Si(imm)"
 				if(Rx = "0000000000000000") then
 					IFIDFlush <= '1';
+					IDEXFlush <= '1';
 					PCSrc <= "01";
 				else
 					IFIDFlush <= '0';
+					IDEXFlush <= '0';
 					PCSrc <= "00";
 				end if;
 			when "010" =>--"if (R[x] != 0)PC â†PC + Si(imm)"
 				if(Rx /= "0000000000000000") then
 					IFIDFlush <= '1';
+					IDEXFlush <= '1';
 					PCSrc <= "01";
 				else
 					IFIDFlush <= '0';
+					IDEXFlush <= '0';
 					PCSrc <= "00";
 				end if;
 			when "011" =>--"if (T== 0)PC â†PC + Si(imm)"
-				if(T = '0') then
+				if(Rx = "0000000000000000") then
 					IFIDFlush <= '1';
+					IDEXFlush <= '1';
 					PCSrc <= "01";
 				else
 					IFIDFlush <= '0';
+					IDEXFlush <= '0';
 					PCSrc <= "00";
 				end if;
 			when "100" =>--PC â†R[x]
 				IFIDFlush <= '1';
+				IDEXFlush <= '1';
 				PCSrc <= "10";
 			when others =>
 				IFIDFlush <= '0';
+				IDEXFlush <= '0';
 				PCSrc <= "00";
 		end case;
 	end process;

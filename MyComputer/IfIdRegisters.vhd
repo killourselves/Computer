@@ -53,12 +53,12 @@ begin
 	imme <= tmpImm;
 	commandOut <= tmpCommand;
 	PCOut <= tmpPC;
-	process(rst, clk, commandIn, PCFour)
+	process(rst, clk)
 	begin 
 		if (rst = '0' or IfIdFlush = '1') then
 			tmpImm <= (others => '0');
 			tmpCommand <= (others => '0');
-			tmpPC <= (others => '0');
+			tmpPC <= "0000000000000000";
 		elsif (clk'event and clk = '1') then 
 				if (IfIdKeep = '0')then
 					tmpImm <= commandIn(10 downto 0);

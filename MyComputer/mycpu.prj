@@ -1,7 +1,6 @@
 vhdl work "../../Computer1/SecondOpMux.vhd"
 vhdl work "../../Computer1/RyMux.vhd"
 vhdl work "../../Computer1/MemWbRegisters.vhd"
-vhdl work "TRegisters.vhd"
 vhdl work "Registers.vhd"
 vhdl work "PCRegister.vhd"
 vhdl work "PCMux.vhd"

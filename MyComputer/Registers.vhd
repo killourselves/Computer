@@ -45,6 +45,7 @@ architecture Behavioral of Registers is
 	signal IH : std_logic_vector(15 downto 0);
 	signal SP : std_logic_vector(15 downto 0);
 	signal PC : std_logic_vector(15 downto 0);
+	signal T  : std_logic_vector(15 downto 0);
 begin
 	
 	process(clk, rst)
@@ -61,6 +62,7 @@ begin
 			IH <= (others => '0');			
 			SP <= (others => '0');
 			PC <= (others => '0');
+			T  <= (others => '0');
 		elsif (clk'event and clk = '0') then
 			PC <= PCIn - x"0001";
 			if(RegWrite = '1') then
@@ -75,6 +77,7 @@ begin
 					when "0111" => r7 <= WbData;
 					when "1000" => SP <= WbData;
 					when "1001" => IH <= WbData;
+					when "1110" => T  <= WbData;
 					--Pc "1010"
 					
 					when others =>
@@ -98,6 +101,7 @@ begin
 			when "1001" => dataA <= IH;
 			when "1010" => dataA <= PC;
 			when "1011" => dataA <= (others => '0');
+			when "1110" => dataA <= T;
 			when others =>
 				dataA <= (others => '1');
 		end case;
@@ -118,6 +122,7 @@ begin
 			when "1001" => dataB <= IH;
 			when "1010" => dataB <= PC;
 			when "1011" => dataB <= (others => '0');
+			when "1110" => dataB <= T;
 			when others =>
 				dataB <= (others => '1');
 		end case;
