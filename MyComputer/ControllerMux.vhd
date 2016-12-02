@@ -42,9 +42,10 @@ architecture Behavioral of ControllerMux is
 begin
 	process(controllerin,CTo0)
 	begin
-		if (CTo0 = '0') then
+		if (CTo0 = '1') then
 		controllerout<="00000";
-		else controllerout<=controllerin;
+		else 
+		controllerout<=controllerin;
 		end if;
 	end process;
 end Behavioral;

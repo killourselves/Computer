@@ -36,7 +36,7 @@ entity IfIdRegisters is
 			commandIn : in std_logic_vector(15 downto 0);
 			PCFour : in std_logic_vector(15 downto 0); 
 			IfIdKeep : in std_logic;
-			IfIdFlush : in std_logic;
+			
 			
 			imme : out std_logic_vector(10 downto 0);
 				
@@ -55,16 +55,19 @@ begin
 	PCOut <= tmpPC;
 	process(rst, clk)
 	begin 
-		if (rst = '0' or IfIdFlush = '1') then
+		if (rst = '0' ) then
 			tmpImm <= (others => '0');
 			tmpCommand <= (others => '0');
 			tmpPC <= "0000000000000000";
 		elsif (clk'event and clk = '1') then 
+			
 				if (IfIdKeep = '0')then
 					tmpImm <= commandIn(10 downto 0);
 					tmpCommand<= commandIn;
 					tmpPC <= PCFour;
 				end if;
+			
+				
 		end if;
 	end process;
 end Behavioral;

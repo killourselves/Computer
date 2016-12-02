@@ -54,7 +54,6 @@ begin
 			controllerOut <= (others => '0');
 			imm <= (others => '0');
 			BJOp<="111";
-	
 			Rd<="1111";
 			ALUOp<="1111";
 		else
@@ -84,11 +83,11 @@ begin
 							if (commandIn(7 downto 0) = "00000000") then --JR
 								imm <= "000";
 							
-								BJOp<="101";
+								BJOp<="100";
 								controllerOut <= "00000";
 								Rd<="1111";
 								ALUOp<="1111";
-								rx<="1111";
+								rx<='0'&commandIn(10 downto 8);
 								ry<="1111";
 						--wjf
 							elsif (commandIn(7 downto 0) = "01000000") then--MFPC
@@ -184,7 +183,7 @@ begin
 							BJOp<="011";
 							Rd<="1111";
 							ALUOp<="0001";
-							rx<="1111";
+							rx<="1110";
 							ry<="1111";
 						
 						when "100" => --MTSP
@@ -218,7 +217,15 @@ begin
 						ALUOp<="0000";
 						rx<='0'&commandIn(10 downto 8);
 						ry<='0'&commandIn(7 downto 5);
+					elsif(commandIn(1 downto 0) = "11") then --SUBU
+						imm <= "000";
 						
+						BJOp <= "101";
+						controllerOut <= "10000";
+						Rd<='0'&commandIn(4 downto 2);
+						ALUOp<="0001";
+						rx<='0'&commandIn(10 downto 8);
+						ry<='0'&commandIn(7 downto 5);
 					end if;
 				when "00100" => --BEQZ
 					imm <= "111";
@@ -227,7 +234,7 @@ begin
 					BJOp<="001";
 					Rd<="1111";
 					ALUOp<="0001";
-					rx<="1111";
+					rx<='0'&commandIn(10 downto 8);
 					ry<="1111";
 						
 				when "00101" => --BNEZ
@@ -237,7 +244,7 @@ begin
 					
 					Rd<="1111";
 					ALUOp<="0001";
-					rx<="1111";
+					rx<='0'&commandIn(10 downto 8);
 					ry<="1111";
 						
 				when "01101" => --LI

@@ -13,6 +13,7 @@ end clock;
 
 architecture Behavioral of clock is
 	signal clk_2,clk_4,clk_8: std_logic;
+	shared variable count : INTEGER ;
 begin
 	process (clkIn,rst)
 		begin
@@ -25,6 +26,7 @@ begin
 							clk_8<=not clk_8;
 						end if;
 					end if;
+					
 			end if;
 			clk2<=clk_2;
 			clk4<=clk_4;

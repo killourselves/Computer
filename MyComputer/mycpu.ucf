@@ -1,8 +1,8 @@
 #clk rst
 #NET "clkIn" LOC = U9; #hand
 #NET "clkIn" LOC = B8;  #11M
-#50M 
-NET "clk" LOC = U9;
+#50M B9
+NET "clk" LOC = B9;
 NET "rst" LOC = U10;
 
 #RAM1

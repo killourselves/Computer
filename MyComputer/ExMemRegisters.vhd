@@ -43,13 +43,13 @@ begin
 	process(rst,clk)
 	begin
 		if (rst = '0') then
-			MemRd <= (others => '0');
+			MemRd <= (others => '1');
 			MemAluRes <= (others => '0');
 			MemWrite <= '0';
 			MemRead <= '0';
 			MemtoReg <= '0';
 			MemRegWrite <= '0';
-			Addr <= (others => '0');
+			Addr <= (others => '1');
 			Data <= (others => '0');
 		elsif (clk'event and clk = '1') then
 			MemRd <= ExRd;
@@ -68,6 +68,6 @@ begin
 
 end Behavioral;
 --输出
---1、MemWrite，MemRead；
+--1、MemWrite，MemRead�
 --2、MemtoReg
 --3、Addr,Data,MemRd,MemAluRes;

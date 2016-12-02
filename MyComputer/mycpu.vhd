@@ -35,7 +35,6 @@ entity mycpu is
 	port(
 			rst : in std_logic; --reset
 			clk : in std_logic; --时钟源  默认为50M  可以通过修改绑定管教来改变
-			
 			--串口
 			dataReady : in std_logic;   
 			tbre : in std_logic;
@@ -76,6 +75,33 @@ architecture Behavioral of mycpu is
 			clk2 : out std_logic;
 			clk4 : out std_logic
 		);
+	end component;
+
+	component vga is
+		 Port(
+        -- common port
+        CLK: in std_logic; 
+        RST: in std_logic;
+        -- data 
+		r0_i          : in  STD_LOGIC_VECTOR (15 downto 0);
+		r1_i          : in  STD_LOGIC_VECTOR (15 downto 0);	
+		r2_i          : in  STD_LOGIC_VECTOR (15 downto 0);
+		r3_i          : in  STD_LOGIC_VECTOR (15 downto 0);	
+		r4_i          : in  STD_LOGIC_VECTOR (15 downto 0);
+		r5_i          : in  STD_LOGIC_VECTOR (15 downto 0);	
+		r6_i          : in  STD_LOGIC_VECTOR (15 downto 0);
+		r7_i          : in  STD_LOGIC_VECTOR (15 downto 0);	
+		T_i           : in  STD_LOGIC_VECTOR (15 downto 0);
+		IH_i          : in  STD_LOGIC_VECTOR (15 downto 0);
+		SP_i          : in  STD_LOGIC_VECTOR (15 downto 0);
+		PC_i			 : in  STD_LOGIC_VECTOR (15 downto 0);
+        -- vga port
+        R: out std_logic_vector(2 downto 0) ;
+        G: out std_logic_vector(2 downto 0) ;
+        B: out std_logic_vector(2 downto 0) ;
+        Hs: out std_logic ;
+        Vs: out std_logic		
+    );
 	end component;
 
 	component ALU
@@ -185,7 +211,6 @@ architecture Behavioral of mycpu is
 			imme : in std_logic_vector(15 downto 0);
 			IDPCAddimme : in std_logic_vector(15 downto 0);
 
-			IDExFlush : in std_logic;
 			IDControl : in std_logic_vector(4 downto 0) ;
 			IDBJOp : in std_logic_vector(2 downto 0);
 
@@ -233,8 +258,6 @@ architecture Behavioral of mycpu is
 			Rx : in std_logic_vector(15 downto 0);
 			BJOp : in std_logic_vector(2 downto 0);
 			
-			IFIDFlush : out std_logic;
-			IDEXFlush : out std_logic;
 			PCSrc : out std_logic_vector(1 downto 0)
 		);
 	end component;
@@ -354,6 +377,7 @@ architecture Behavioral of mycpu is
 			dataA : out std_logic_vector(15 downto 0);
 			dataB : out std_logic_vector(15 downto 0);
 			dataSP : out std_logic_vector(15 downto 0);
+			dataT : out std_logic_vector(15 downto 0);
 			dataIH : out std_logic_vector(15 downto 0)
 		);
 	end component;
@@ -365,7 +389,7 @@ architecture Behavioral of mycpu is
 			commandIn : in std_logic_vector(15 downto 0);
 			PCFour : in std_logic_vector(15 downto 0); 
 			IfIdKeep : in std_logic;
-			IfIdFlush : in std_logic;
+		
 			
 			imme : out std_logic_vector(10 downto 0);
 				
@@ -399,7 +423,6 @@ architecture Behavioral of mycpu is
 	signal pcadderout  : std_logic_vector(15 downto 0);--pc adder out
 	signal ifcommand : std_logic_vector(15 downto 0);--come from io
 	signal ifidkeep : std_logic;--come from BJController
-	signal ifidflush : std_logic;--come from BJController
 
 	--id
 	signal idimme   : std_logic_vector(10 downto 0);--come from ifidregister (immextend in)
@@ -418,7 +441,6 @@ architecture Behavioral of mycpu is
 	signal idry : std_logic_vector(15 downto 0);--come from registers
 	signal idt : std_logic;--come from TRegisters
 	signal idcto0 : std_logic;--ConflictController out
-	signal idexflush : std_logic;
 
 	--ex
 	signal exrd : std_logic_vector(3 downto 0);	
@@ -461,7 +483,14 @@ architecture Behavioral of mycpu is
 
 
 
-	signal r0,r1,r2,r3,r4,r5,r6,r7 : std_logic_vector(15 downto 0);--(debug)
+	signal r0,r1,r2,r3,r4,r5,r6,r7,dataT1,dataSp,dataIH : std_logic_vector(15 downto 0);--(debug)
+	signal temp1 : std_logic_vector(15 downto 0);
+	signal temp2 : std_logic_vector(15 downto 0);
+	signal temp3 : std_logic_vector(15 downto 0);
+	signal temp4 : std_logic_vector(15 downto 0);
+	signal temp5 : std_logic_vector(15 downto 0);
+	signal temp6 : std_logic_vector(15 downto 0);
+	signal temp7 : std_logic_vector(15 downto 0);
 
 
 begin
@@ -508,7 +537,6 @@ u5 : IfIdRegisters
 
 		PCFour => pcadderout,
 		IfIdKeep => ifidkeep,
-		IfIdFlush => ifidflush,
 		--out
 		imme => idimme,		
 		commandOut =>idcommand,
@@ -569,8 +597,9 @@ u9 : Registers
 			
 		dataA => idrx,
 		dataB => idry,
-		dataSP => open,
-		dataIH => open
+		dataSP => dataSP,
+		dataT => dataT1,
+		dataIH => dataIH
 	);
 
 --u10 : TRegisters
@@ -590,8 +619,6 @@ u11 : BJController
 		--T => idt,
 		BJOp => exbjop,
 		--out
-		IFIDFlush => ifidflush,
-		IDEXFlush => idexflush,
 		PCSrc => pcsrc
 		
 	);
@@ -628,7 +655,6 @@ u14 : IDExRegisters
 		imme => idimme16,
 		IDPCAddimme => idpcaddimme,
 
-		IDExFlush => idexflush,
 		IDControl => idcontrol,
 		-- RegWrite(0) ALUSrc(1) MemRead(2)MemWrite(3)MemtoReg(4)
 		Command => idcommand,
@@ -781,15 +807,46 @@ u22 : ForwardUnit
 		Forward1 => forward1,
 		Forward2 => forward2
 	);
+
+u23 : vga
+	port map(
+        -- common port
+        CLK=>clk,
+        RST=>rst,
+        -- data 
+		r0_i          =>temp1,
+		r1_i          =>temp2,	
+		r2_i          =>temp3,
+		r3_i          =>temp4,	
+		r4_i          =>temp5,
+		r5_i          =>temp6,
+		r6_i          =>temp7,
+		r7_i          =>r7,	
+		T_i           =>dataT1,
+		IH_i          =>dataIH,
+		SP_i          =>dataSP,
+		PC_i		  =>pcrout,
+        -- vga port
+        R=>redOut ,
+        G=>greenOut ,
+        B=>blueOut ,
+        Hs=>hs ,
+        Vs=>vs		
+    );
 	
-	
-	
+	temp1 <= r0;--"00000000000000"&pcsrc;
+	temp2 <= r1;--"0000000000000" & idbjop;
+	temp3 <= r2;--"0000000000000" & exbjop;
+	temp4 <= r3;--"000000000000" &idryaddr;
+	temp5 <= r4;
+	temp6 <= r5;
+	temp7 <= r6;
 	--led <=wbdata;
 	led <= ifcommand;
 	--jing <= PCOut;
-	process(pcadderout)
+	process(memaddr)
 		begin
-		case pcadderout(7 downto 4) is
+		case memaddr(15 downto 12) is
 			when "0000" => digit1 <= "0111111";--0
 			when "0001" => digit1 <= "0000110";--1
 			when "0010" => digit1 <= "1011011";--2
@@ -809,7 +866,7 @@ u22 : ForwardUnit
 			when others => digit1 <= "0000000";
 		end case;
 		
-		case pcadderout(3 downto 0) is
+		case memaddr(11 downto 8) is
 			when "0000" => digit2 <= "0111111";--0
 			when "0001" => digit2 <= "0000110";--1
 			when "0010" => digit2 <= "1011011";--2
@@ -830,10 +887,6 @@ u22 : ForwardUnit
 		end case;
 	end process;
 	--ram1Addr <= (others => '0');
-	hs<='0';
-	vs<='0';
-	redOut<="000";
-	greenOut<="000";
-	blueOut<="000";
+	
 end Behavioral;
 

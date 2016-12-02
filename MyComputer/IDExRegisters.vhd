@@ -21,10 +21,8 @@ entity IDExRegisters is
 			Ry : in std_logic_vector(15 downto 0);
 			imme : in std_logic_vector(15 downto 0);
 IDPCAddimme : in std_logic_vector(15 downto 0);
-
-IDExFlush : in std_logic;
 			IDControl : in std_logic_vector(4 downto 0) ;
-			-- RegWrite(0) ALUSrc(1) MemRead(2)MemWrite(3)MemtoReg(4)
+			-- RegWrite(4) ALUSrc(3) MemRead(2)MemWrite(1)MemtoReg(0)
 
 			Command : in std_logic_vector(15 downto 0);
 			IDAluOp : in std_logic_vector(3 downto 0);
@@ -50,11 +48,12 @@ ExPCAddimme : out std_logic_vector(15 downto 0);
 end IDExRegisters;
 
 architecture Behavioral of IDExRegisters is
-
+		signal repcaddimme : std_logic_vector(15 downto 0);
 begin
+	ExPCAddimme<= repcaddimme;
 	process(rst,clk)
 	begin
-		if (rst = '0' or IDExFlush = '1') then
+		if (rst = '0') then
 			ExRd <= (others => '1');
 			Eximme <= (others => '0');
 			ExRxAddr <= (others => '0');
@@ -62,9 +61,8 @@ begin
 			ExRx <= (others => '0');
 			ExRy <= (others => '0');
 			AluOp <= (others => '1');
-			ExBJOp <= (others => '1');
-			ExPCAddimme <= (others => '0');
-
+			ExBJOp <= "101";
+			repcaddimme <= (others => '0');
 			AluSrc <= '0';
 			ExMemRead <= '0';
 			ExMemWrite <= '0';
@@ -72,21 +70,22 @@ begin
 			ExRegWrite <= '0';
 
 		elsif (clk'event and clk = '1') then
-			ExRd <= IDRd;
-			Eximme <= imme;
-			ExRxAddr <= RxAddr;
-			ExRyAddr <= RyAddr;
-			ExRx <= Rx;
-			ExRy <= Ry;
-			AluOp <= IDAluOp;
-			ExBJOp <= IDBJOp;
-			ExPCAddimme <= IDPCAddimme;
+				ExRd <= IDRd;
+				Eximme <= imme;
+				ExRxAddr <= RxAddr;
+				ExRyAddr <= RyAddr;
+				ExRx <= Rx;
+				ExRy <= Ry;
+				AluOp <= IDAluOp;
+				ExBJOp <= IDBJOp;
+				repcaddimme <= IDPCAddimme;
 
-			AluSrc <= IDControl(1);
-			ExMemRead <= IDControl(2);
-			ExMemWrite <= IDControl(3);
-			ExMemtoReg <= IDControl(4);
-			ExRegWrite <= IDControl(0);
+				AluSrc <= IDControl(3);
+				ExMemRead <= IDControl(2);
+				ExMemWrite <= IDControl(1);
+				ExMemtoReg <= IDControl(0);
+				ExRegWrite <= IDControl(4);
+		
 		end if;
 	end process;
 			

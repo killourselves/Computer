@@ -31,7 +31,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity IO is
+entity MEM is
     Port (	
         	clk : in STD_LOGIC;
 			rst : in STD_LOGIC;
@@ -70,9 +70,9 @@ entity IO is
 			  
 				
 			  );
-end IO;
+end MEM;
 
-architecture Behavioral of IO is
+architecture Behavioral of MEM is
 	
 	
 	-- 暂存一些数据

@@ -9,40 +9,40 @@ Target Device  : xc3s1200e
 Target Package : fg320
 Target Speed   : -4
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Wed Nov 30 19:50:04 2016
+Mapped Date    : Fri Dec 02 18:46:37 2016
 
 Mapping design into LUTs...
-WARNING:MapLib:701 - Signal ram1Data<15> connected to top level port
-   ram1Data<15> has been removed.
-WARNING:MapLib:701 - Signal ram1Data<14> connected to top level port
-   ram1Data<14> has been removed.
-WARNING:MapLib:701 - Signal ram1Data<13> connected to top level port
-   ram1Data<13> has been removed.
-WARNING:MapLib:701 - Signal ram1Data<12> connected to top level port
-   ram1Data<12> has been removed.
-WARNING:MapLib:701 - Signal ram1Data<11> connected to top level port
-   ram1Data<11> has been removed.
-WARNING:MapLib:701 - Signal ram1Data<10> connected to top level port
-   ram1Data<10> has been removed.
-WARNING:MapLib:701 - Signal ram1Data<9> connected to top level port ram1Data<9>
+WARNING:MapLib:701 - Signal ram2Data<15> connected to top level port
+   ram2Data<15> has been removed.
+WARNING:MapLib:701 - Signal ram2Data<14> connected to top level port
+   ram2Data<14> has been removed.
+WARNING:MapLib:701 - Signal ram2Data<13> connected to top level port
+   ram2Data<13> has been removed.
+WARNING:MapLib:701 - Signal ram2Data<12> connected to top level port
+   ram2Data<12> has been removed.
+WARNING:MapLib:701 - Signal ram2Data<11> connected to top level port
+   ram2Data<11> has been removed.
+WARNING:MapLib:701 - Signal ram2Data<10> connected to top level port
+   ram2Data<10> has been removed.
+WARNING:MapLib:701 - Signal ram2Data<9> connected to top level port ram2Data<9>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<8> connected to top level port ram1Data<8>
+WARNING:MapLib:701 - Signal ram2Data<8> connected to top level port ram2Data<8>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<7> connected to top level port ram1Data<7>
+WARNING:MapLib:701 - Signal ram2Data<7> connected to top level port ram2Data<7>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<6> connected to top level port ram1Data<6>
+WARNING:MapLib:701 - Signal ram2Data<6> connected to top level port ram2Data<6>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<5> connected to top level port ram1Data<5>
+WARNING:MapLib:701 - Signal ram2Data<5> connected to top level port ram2Data<5>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<4> connected to top level port ram1Data<4>
+WARNING:MapLib:701 - Signal ram2Data<4> connected to top level port ram2Data<4>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<3> connected to top level port ram1Data<3>
+WARNING:MapLib:701 - Signal ram2Data<3> connected to top level port ram2Data<3>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<2> connected to top level port ram1Data<2>
+WARNING:MapLib:701 - Signal ram2Data<2> connected to top level port ram2Data<2>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<1> connected to top level port ram1Data<1>
+WARNING:MapLib:701 - Signal ram2Data<1> connected to top level port ram2Data<1>
    has been removed.
-WARNING:MapLib:701 - Signal ram1Data<0> connected to top level port ram1Data<0>
+WARNING:MapLib:701 - Signal ram2Data<0> connected to top level port ram2Data<0>
    has been removed.
 Running directed packing...
 Running delay-based LUT packing...
@@ -57,41 +57,36 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net u6/Rd_not0001 is sourced by
 WARNING:PhysDesignRules:372 - Gated clock. Clock net u12/Cto0_or0000 is sourced
    by a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:367 - The signal <tbre_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <tsre_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
 
 Design Summary
 --------------
 
 Design Summary:
 Number of errors:      0
-Number of warnings:   21
+Number of warnings:   19
 Logic Utilization:
-  Total Number Slice Registers:         489 out of  17,344    2%
-    Number used as Flip Flops:          446
+  Total Number Slice Registers:         517 out of  17,344    2%
+    Number used as Flip Flops:          474
     Number used as Latches:              43
-  Number of 4 input LUTs:             1,262 out of  17,344    7%
+  Number of 4 input LUTs:             1,586 out of  17,344    9%
 Logic Distribution:
-  Number of occupied Slices:            796 out of   8,672    9%
-    Number of Slices containing only related logic:     796 out of     796 100%
-    Number of Slices containing unrelated logic:          0 out of     796   0%
+  Number of occupied Slices:            972 out of   8,672   11%
+    Number of Slices containing only related logic:     972 out of     972 100%
+    Number of Slices containing unrelated logic:          0 out of     972   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       1,283 out of  17,344    7%
-    Number used as logic:             1,262
-    Number used as a route-thru:         21
+  Total Number of 4 input LUTs:       1,621 out of  17,344    9%
+    Number used as logic:             1,586
+    Number used as a route-thru:         35
 
   The Slice Logic Distribution report is not meaningful if the design is
   over-mapped for a non-slice resource or if Placement fails.
 
   Number of bonded IOBs:                106 out of     250   42%
-    IOB Flip Flops:                       1
-  Number of BUFGMUXs:                     4 out of      24   16%
+  Number of BUFGMUXs:                     5 out of      24   20%
 
-Average Fanout of Non-Clock Nets:                3.57
+Average Fanout of Non-Clock Nets:                3.70
 
-Peak Memory Usage:  316 MB
+Peak Memory Usage:  332 MB
 Total REAL time to MAP completion:  2 secs 
 Total CPU time to MAP completion:   2 secs 
 

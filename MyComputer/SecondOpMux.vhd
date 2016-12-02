@@ -28,7 +28,7 @@ begin
 		case AluSrc is
 			when '0' =>--ry
 				SecondOp <= Ry;
-			when "1" =>--imme
+			when '1' =>--imme
 				SecondOp <= imme;
 			when others =>
 				SecondOp <= (others => '0');

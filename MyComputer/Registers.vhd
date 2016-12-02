@@ -28,6 +28,7 @@ entity Registers is
 		dataA : out std_logic_vector(15 downto 0);
 		dataB : out std_logic_vector(15 downto 0);
 		dataSP : out std_logic_vector(15 downto 0);
+		dataT : out std_logic_vector(15 downto 0);
 		dataIH : out std_logic_vector(15 downto 0)
 	);
 end Registers;
@@ -61,10 +62,10 @@ begin
 			r7 <= (others => '0');
 			IH <= (others => '0');			
 			SP <= (others => '0');
-			PC <= (others => '0');
+			
 			T  <= (others => '0');
 		elsif (clk'event and clk = '0') then
-			PC <= PCIn - x"0001";
+			
 			if(RegWrite = '1') then
 				case WbRd is 
 					when "0000" => r0 <= WbData;
@@ -127,9 +128,10 @@ begin
 				dataB <= (others => '1');
 		end case;
 	end process;
-	
+	PC <= PCIn;
 	dataSP <= SP;
 	dataIH <= IH;
+	dataT<= T;
 	
 	r0Out <= r0;
 	r1Out <= r1;
